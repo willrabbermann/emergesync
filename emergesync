@@ -12,10 +12,10 @@ flag=$(echo "$elapsed >= $MIN_TIME" | bc)
 h=$(echo "$elapsed/3600" | bc)
 m=$(echo "$elapsed%3600/60" | bc)
 s=$(echo "$elapsed%60" | bc)
-mhs="$h hours, $m minutes, $s seconds"
+hms="$h hours, $m minutes, $s seconds"
 
 if [[ $flag == '1' ]]; then
-        echo "Last sync was $mhs ago."
+        echo "Last sync was $hms ago."
 	echo "Portage has not been synced within $min_hour hours."
 	echo -e "\nSyncing portage...\n"
 	sleep 2
@@ -28,6 +28,6 @@ if [[ $flag == '1' ]]; then
 	fi
 else
 	echo "Portage was synced within $min_hour hours."
-	echo "Last sync was $mhs ago."
+	echo "Last sync was $hms ago."
 
 fi
