@@ -29,5 +29,4 @@ if [[ $flag == '1' ]]; then
 else
 	echo "Portage was synced within $min_hour hours."
 	echo "Last sync was $hms ago."
-
 fi
