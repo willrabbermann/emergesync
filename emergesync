@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 MIN_TIME="7200"
 min_hour=$(echo "$MIN_TIME / 3600" | bc)
