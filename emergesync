@@ -24,9 +24,16 @@ if [[ $flag == '1' ]]; then
 	
 	if [[ -z $1 ]]; then
 		sudo emerge -uNDtav @world
-		sudo emerge --depclean -av
+		sudo emerge -ca
 	fi
 else
 	echo "Portage was synced within $min_hour hours."
 	echo "Last sync was $hms ago."
+fi
+
+if [[ $1 == "-f" || $1 == "--force" ]]; then
+    echo -e "\nForcing anyway.\n"
+    sudo emerge --sync
+    sudo emerge -uNDtav @world
+    sudo emerge -ca
 fi
