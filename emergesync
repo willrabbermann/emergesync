@@ -14,7 +14,12 @@ m=$(echo "$elapsed%3600/60" | bc)
 s=$(echo "$elapsed%60" | bc)
 hms="$h hours, $m minutes, and $s seconds"
 
-if [[ $flag == '1' ]]; then
+if [[ $1 == "-f" || $1 == "--force" ]]; then
+    echo "Last sync was $hms ago."
+    sudo emerge --sync
+    sudo emerge -uNDtav @world
+    sudo emerge -ca
+elif [[ $flag == '1' ]]; then
         echo "Last sync was $hms ago."
 	echo "Portage has not been synced within $min_hour hours."
 	echo -e "\nSyncing portage...\n"
@@ -29,11 +34,4 @@ if [[ $flag == '1' ]]; then
 else
 	echo "Portage was synced within $min_hour hours."
 	echo "Last sync was $hms ago."
-fi
-
-if [[ $1 == "-f" || $1 == "--force" ]]; then
-    echo -e "\nForcing anyway.\n"
-    sudo emerge --sync
-    sudo emerge -uNDtav @world
-    sudo emerge -ca
 fi
