@@ -33,13 +33,13 @@ if [[ $flag == '1' || $1 == '-f' || $1 == '--force' ]]; then
     fi
 
     sleep 2
-	
-	sudo emerge --sync
-	
-	if [[ -z $1 || $1 == '-f' || $1 == '--force' ]]; then
-		sudo emerge -uNDtav @world
-		sudo emerge -ca
-	fi
+    
+    sudo emerge --sync
+    
+    if [[ -z $1 || $1 == '-f' || $1 == '--force' ]]; then
+    	sudo emerge -uNDtav @world
+	sudo emerge -ca
+    fi
 elif [[ $1 == '-uc' || $1 == '--updateclean' ]]; then
     echo "Last sync was $hms ago."
     echo -e "\nUpdating @world set and depcleaning...\n"
