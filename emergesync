@@ -10,11 +10,16 @@
 MIN_TIME="7200"
 min_hour=$(echo "$MIN_TIME / 3600" | bc)
 
-lastsync=$(sudo qlop --sync | tail -n 1)
-lastsync=${lastsync:0:19}
-lastsync=$(date -d"$lastsync" +%s)
-elapsed=$(echo "$(date +%s) - $lastsync" | bc)
-flag=$(echo "$elapsed >= $MIN_TIME" | bc)
+if [ -s /var/log/emerge.log ]; then
+    lastsync=$(sudo qlop --sync | tail -n 1)
+    lastsync=${lastsync:0:19}
+    lastsync=$(date -d"$lastsync" +%s)
+    elapsed=$(echo "$(date +%s) - $lastsync" | bc)
+    flag=$(echo "$elapsed >= $MIN_TIME" | bc)
+else
+    elapsed='0'
+    flag='1'
+fi
 
 h=$(echo "$elapsed/3600" | bc)
 m=$(echo "$elapsed%3600/60" | bc)
