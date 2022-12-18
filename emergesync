@@ -1,6 +1,5 @@
 #!/bin/bash
 #
-#
 # emergesync  [  -f  -uc  -t  -ts  ]
 # -f    --force         =    Force syncing portage, updating the @world set, and depclean ask.
 # -uc   --updateclean   =    Skip syncing portage then update the @world set and depclean ask.
